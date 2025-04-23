@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students in Property - Curtin University</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary: #000000;
+            --secondary: #333333;
+            --accent: #FF7F50;
+            /* Coral/orange accent */
+            --light: #f9f9f9;
+            --mid: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif; /* Set Inter as the default font */
+        }
+
+        body {
+            color: var(--primary);
+            line-height: 1.6;
+            background-color: white;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Inter', sans-serif; /* Ensure headings also use Inter */
+            letter-spacing: 0.5px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 80px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            font-family: 'Inter', sans-serif; /* Ensure navigation links use Inter */
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        .hero {
+            background: url('Images/sundowner.png') center/cover no-repeat;
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: var(--accent);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif; /* Ensure buttons use Inter */
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary);
+        }
+
+        .btn:hover::after {
+            width: 100%;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .about-img {
+            flex: 1;
+            position: relative;
+        }
+
+        .about-img::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--accent);
+            z-index: -1;
+        }
+
+        .about-img img {
+            width: 100%;
+            display: block;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-weight: 300;
+            font-size: 1.05rem;
+            font-family: 'Inter', sans-serif; /* Ensure all paragraph text uses Inter */
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .event-card {
+            border: none;
+            background-color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 0;
+            background-color: var(--accent);
+            transition: height 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-card:hover::before {
+            height: 100%;
+        }
+
+        .event-img {
+            height: 220px;
+            background-color: var(--mid);
+            background-size: cover;
+            background-position: center;
+            border-radius: 5px; /* Optional: Add rounded corners */
+        }
+
+        .event-content {
+            padding: 30px;
+        }
+
+        .event-date {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .event-content p {
+            font-family: 'Inter', sans-serif; /* Ensure all paragraph text uses Inter */
+        }
+
+        .committee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjusted for smaller profiles */
+            gap: 20px; /* Reduced gap for better fit */
+            text-align: center;
+        }
+
+        .committee-member {
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .member-img {
+            width: 120px; /* Smaller size */
+            height: 120px; /* Smaller size */
+            border-radius: 50%;
+            background-color: var(--mid);
+            margin: 0 auto 10px; /* Adjusted margin */
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .member-img::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 30px;
+            width: 20px;
+            height: 20px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .committee-member:hover .member-img {
+            transform: scale(1.05);
+        }
+
+        .committee-member:hover .member-img::after {
+            opacity: 1;
+        }
+
+        .member-img.ruby {
+            background-image: url('Images/ruby.jpg'); /* Replace with Ruby's photo */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .member-img.alex {
+            background-image: url('Images/alex.jpg'); /* Replace with Alex's photo */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .member-img.brynn {
+            background-image: url('Images/brynn.png'); /* Replace with Brynn's photo */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .member-img.issy {
+            background-image: url('Images/issy.png'); /* Replace with Issy's photo */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .member-img.lorenzo {
+            background-image: url('Images/lorenzo.png'); /* Replace with Lorenzo's photo */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .member-img.emily {
+            background-image: url('Images/emily.png'); /* Replace with Emily's photo */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .member-img.juliana {
+            background-image: url('Images/juliana.png'); /* Replace with Juliana's photo */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .member-img.martin {
+            background-image: url('Images/martin.png'); /* Replace with Martin's photo */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .member-img.yan {
+            background-image: url('Images/yan.png'); /* Replace with Yan's photo */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .resource-card {
+            background-color: white;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 0;
+            background-color: var(--accent);
+            opacity: 0.05;
+            z-index: -1;
+            transition: height 0.3s;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .resource-card:hover::before {
+            height: 100%;
+        }
+
+        .resource-card h3 {
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .resource-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+
+        .resource-card p {
+            font-family: 'Inter', sans-serif; /* Ensure all paragraph text uses Inter */
+        }
+
+        .contact-content {
+            display: flex;
+            gap: 60px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .contact-info h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            font-weight: 300;
+            font-family: 'Inter', sans-serif; /* Ensure all paragraph text uses Inter */
+        }
+
+        .contact-form {
+            flex: 1;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--mid);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 12px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        .orange-line {
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        .animated-line {
+            width: 0;
+            height: 3px;
+            background-color: var(--accent);
+            margin: 0 auto 20px;
+            transition: width 0.5s ease-out;
+        }
+
+        .animated-line.active {
+            width: 100%;
+        }
+
+        .hero-logo {
+            max-width: 200px;
+            margin-bottom: 30px;
+        }
+
+        .squiggly-line {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            z-index: -1;
+            animation: moveSquiggly 5s infinite linear;
+        }
+
+        @keyframes moveSquiggly {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script>
+    <script src="https://raw.githubusercontent.com/username/repository-name/main/index.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <div class="container header-content">
+            <img src="https://raw.githubusercontent.com/username/repository-name/main/Images/logo.png" alt="Students in Property Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#committee">Committee</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <img src="https://raw.githubusercontent.com/username/repository-name/main/Images/logo.png" alt="Students in Property Logo" class="hero-logo">
+            <h1>Welcome to Students in Property</h1>
+            <p>Connecting property students at Curtin University through networking events, industry insights, and
+                professional development opportunities.</p>
+            <a href="#events" class="btn">Upcoming Events</a>
+        </div>
+    </section>
+
+    <section id="about" style="position: relative; overflow: hidden;">
+        <div class="container">
+            <h2>About Us</h2>
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="Images/team.jpg" alt="Students at networking event">
+                </div>
+                <div class="about-text">
+                    <p>Students in Property (SiP) is a student-led committee at Curtin University dedicated to enhancing
+                        the university experience for property students.</p>
+                    <p>Our mission is to create meaningful connections between students and industry professionals,
+                        providing valuable networking opportunities and insights into the property industry.</p>
+                    <p>Founded by passionate property students, SiP organizes regular events, workshops, and site visits
+                        to help members develop professional skills and build relationships that will benefit their
+                        future careers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="events" style="position: relative; overflow: hidden; background-color: var(--light);">
+        <div class="container">
+            <h2>Upcoming Events</h2>
+            <!-- File input for uploading the Excel file -->
+            <div style="text-align: center; margin-bottom: 20px;">
+                <label for="upload-events" class="btn">Upload Events Spreadsheet</label>
+                <input type="file" id="upload-events" style="display: none;" accept=".xlsx, .xls">
+            </div>
+            <div class="events-grid" id="events-grid">
+                <!-- Events will be dynamically populated here -->
+            </div>
+        </div>
+    </section>
+
+    <section id="committee" style="position: relative; overflow: hidden;">
+        <div class="container">
+            <h2>Meet Our Committee</h2>
+            <div class="committee-grid">
+                <div class="committee-member">
+                    <div class="member-img ruby"></div>
+                    <h3>Ruby Moors</h3>
+                    <p>President/Founder</p>
+                </div>
+                <div class="committee-member">
+                    <div class="member-img alex"></div>
+                    <h3>Alex Bolzaris</h3>
+                    <p>Vice President</p>
+                </div>
+                <div class="committee-member">
+                    <div class="member-img brynn"></div>
+                    <h3>Brynn Hammersly</h3>
+                    <p>Professional DJ</p>
+                </div>
+                <div class="committee-member">
+                    <div class="member-img issy"></div>
+                    <h3>Issy Ng</h3>
+                    <p>Member</p>
+                </div>
+                <div class="committee-member">
+                    <div class="member-img lorenzo"></div>
+                    <h3>Lorenzo Di Guio</h3>
+                    <p>Member</p>
+                </div>
+                <div class="committee-member">
+                    <div class="member-img emily"></div>
+                    <h3>Emily De Longville</h3>
+                    <p>Member</p>
+                </div>
+                <div class="committee-member">
+                    <div class="member-img juliana"></div>
+                    <h3>Juliana Quenano</h3>
+                    <p>Member</p>
+                </div>
+                <div class="committee-member">
+                    <div class="member-img martin"></div>
+                    <h3>Martin Quann</h3>
+                    <p>Member</p>
+                </div>
+                <div class="committee-member">
+                    <div class="member-img yan"></div>
+                    <h3>Yan Liu</h3>
+                    <p>Member</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="resources" style="position: relative; overflow: hidden; background-color: var(--light);">
+        <div class="container">
+            <h2>Student Resources</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3>Industry Reports</h3>
+                    <p>Access the latest property market reports and industry analyses to stay informed about trends and
+                        developments.</p>
+                </div>
+                <div class="resource-card">
+                    <h3>Internship Opportunities</h3>
+                    <p>Discover internship and work experience opportunities with our industry partners in the property
+                        sector.</p>
+                </div>
+                <div class="resource-card">
+                    <h3>Career Guides</h3>
+                    <p>Resources to help you navigate different career paths in the property industry and prepare for
+                        job applications.</p>
+                </div>
+                <div class="resource-card">
+                    <h3>Academic Support</h3>
+                    <p>Study guides, past exam papers, and course materials to help you excel in your property studies.
+                    </p>
+                </div>
+                <div class="resource-card">
+                    <h3>Industry Connections</h3>
+                    <p>Directory of industry professionals and alumni who are open to connecting with Curtin property
+                        students.</p>
+                </div>
+                <div class="resource-card">
+                    <h3>Presentation Templates</h3>
+                    <p>Professional templates for assignments, presentations, and reports that meet industry standards.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" style="position: relative; overflow: hidden;">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p>Have questions about SiP or want to get involved? Reach out to us!</p>
+                    <p><strong>Email:</strong> studentsinproperty@curtin.edu.au</p>
+                    <p><strong>Office:</strong> Building 407, Level 2, Room 213</p>
+                    <p><strong>Office Hours:</strong> Monday-Thursday, 10:00 AM - 2:00 PM</p>
+                    <h3 style="margin-top: 40px;">Follow Us</h3>
+                    <p>Stay updated with our latest events and announcements on social media.</p>
+                    <div class="social-links">
+                        <a href="#">Instagram</a>
+                        <a href="#">Facebook</a>
+                        <a href="#">LinkedIn</a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" required=""></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Students in Property | Curtin University</p>
+            <div class="social-links">
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
